@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="user-details">
+  <h2><%= @user.name %></h2> <!-- Corregido para mostrar el campo :name directamente -->
+  <p><strong>Email:</strong> <%= @user.email %></p>
+</div>
+
+<div class="user-chats">
+  <h3>Chats:</h3>
+  <% if @chats.any? %> <!-- Usando la variable @chats del controlador -->
+    <ul>
+      <% @chats.each do |chat| %>
+        <li>
+          <%= link_to "Chat ##{chat.id}", chat_path(chat) %>
+          (con <%= chat.sender == @user ? chat.receiver.name : chat.sender.name %>)
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No tienes chats aún.</p>
+  <% end %>
+</div>
+
+<div class="user-messages">
+  <h3>Mensajes Enviados:</h3>
+  <% if @messages.any? %> <!-- Usando la variable @messages del controlador -->
+    <ul>
+      <% @messages.each do |message| %>
+        <li>
+          "<%= message.body %>"
+          (en <%= link_to "Chat ##{message.chat.id}", chat_path(message.chat) %>)
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No has enviado mensajes aún.</p>
+  <% end %>
+</div>
+
+<%= link_to 'Editar Usuario', edit_user_path(@user) %> |
+<%= link_to 'Volver a Usuarios', users_path %>

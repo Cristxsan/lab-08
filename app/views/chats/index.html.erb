@@ -1,0 +1,23 @@
+<h1>Chats</h1>
+
+<%= link_to 'Crear nuevo chat', new_chat_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Remitente</th>
+      <th>Receptor</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chats.each do |chat| %>
+      <tr>
+        <td><%= chat.sender.first_name %> <%= chat.sender.last_name %></td>
+        <td><%= chat.receiver.first_name %> <%= chat.receiver.last_name %></td>
+        <td><%= link_to 'Ver', chat_path(chat) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

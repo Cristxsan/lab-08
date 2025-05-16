@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WhatsNew</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  	<nav>
+	  <ul style="display: flex; gap: 20px; list-style: none;">
+	    <li><%= link_to 'Usuarios', users_path %></li>
+	    <li><%= link_to 'Chats', chats_path %></li>
+	    <li><%= link_to 'Mensajes', messages_path %></li>
+	  </ul>
+	</nav>
+	<hr>
+    <%= yield %>
+  </body>
+</html>

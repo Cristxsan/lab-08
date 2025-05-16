@@ -1,0 +1,30 @@
+<h1>Nuevo Usuario</h1>
+
+<%= form_with model: @user, local: true do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> impidieron guardar el usuario:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name, "Nombre Completo" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.submit "Crear Usuario" %>
+  </div>
+<% end %>
+
+<%= link_to 'Volver', users_path %>

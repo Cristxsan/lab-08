@@ -1,0 +1,31 @@
+<h1>Nuevo Chat</h1>
+
+<%= form_with model: @chat, local: true do |f| %>
+  <% if @chat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chat.errors.count, "error") %> impidieron guardar el chat:</h2>
+      <ul>
+        <% @chat.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :sender_id, "Remitente" %><br>
+    <%= f.select :sender_id, User.all.map { |u| [u.first_name + ' ' + u.last_name, u.id] } %>
+  </div>
+
+  <div>
+    <%= f.label :receiver_id, "Receptor" %><br>
+    <%= f.select :receiver_id, User.all.map { |u| [u.first_name + ' ' + u.last_name, u.id] } %>
+  </div>
+
+  <div>
+    <%= f.submit "Crear Chat" %>
+  </div>
+<% end %>
+
+<%= link_to 'Volver', chats_path %>
+

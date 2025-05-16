@@ -1,0 +1,35 @@
+<h1>Nuevo Mensaje</h1>
+
+<%= form_with model: @message, local: true do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> impidieron guardar el mensaje:</h2>
+      <ul>
+        <% @message.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :chat_id, "Chat" %><br>
+    <%= f.select :chat_id, Chat.all.map { |c| ["Chat entre #{c.sender.first_name} y #{c.receiver.first_name}", c.id] } %>
+  </div>
+
+  <div>
+    <%= f.label :user_id, "Usuario que escribe" %><br>
+    <%= f.select :user_id, User.all.map { |u| ["#{u.first_name} #{u.last_name}", u.id] } %>
+  </div>
+
+  <div>
+    <%= f.label :body, "Contenido del mensaje" %><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.submit "Enviar mensaje" %>
+  </div>
+<% end %>
+
+<%= link_to 'Volver', messages_path %>

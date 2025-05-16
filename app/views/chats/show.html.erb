@@ -1,0 +1,7 @@
+<h1>Chat</h1>
+
+<p><strong>Remitente:</strong> <%= @chat.sender.first_name %> <%= @chat.sender.last_name %></p>
+<p><strong>Receptor:</strong> <%= @chat.receiver.first_name %> <%= @chat.receiver.last_name %></p>
+
+<%= link_to 'Volver', chats_path %>
+
